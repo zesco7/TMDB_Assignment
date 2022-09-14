@@ -15,6 +15,9 @@
 		98E23C8A28D1F63E0007DFAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E23C8828D1F63E0007DFAE /* LaunchScreen.storyboard */; };
 		98E23C9528D1F7520007DFAE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 98E23C9428D1F7520007DFAE /* .gitignore */; };
 		98E23C9728D1F8150007DFAE /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C9628D1F8150007DFAE /* APIKey.swift */; };
+		98E23C9928D1F8910007DFAE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C9828D1F8910007DFAE /* TestViewController.swift */; };
+		98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C9B28D1F9CC0007DFAE /* GitIgnoreExample.swift */; };
+		98E23C9F28D1FAC60007DFAE /* GitIgnoreExample2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C9E28D1FAC60007DFAE /* GitIgnoreExample2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		98E23C8B28D1F63E0007DFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98E23C9428D1F7520007DFAE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		98E23C9628D1F8150007DFAE /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		98E23C9828D1F8910007DFAE /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		98E23C9B28D1F9CC0007DFAE /* GitIgnoreExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitIgnoreExample.swift; sourceTree = "<group>"; };
+		98E23C9E28D1FAC60007DFAE /* GitIgnoreExample2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitIgnoreExample2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,8 @@
 		98E23C7C28D1F63D0007DFAE /* TMDB_Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				98E23C9D28D1FA450007DFAE /* Resource */,
+				98E23C9A28D1F9B00007DFAE /* Key */,
 				98E23C7D28D1F63D0007DFAE /* AppDelegate.swift */,
 				98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */,
 				98E23C8128D1F63D0007DFAE /* ViewController.swift */,
@@ -68,9 +76,26 @@
 				98E23C8628D1F63E0007DFAE /* Assets.xcassets */,
 				98E23C8828D1F63E0007DFAE /* LaunchScreen.storyboard */,
 				98E23C8B28D1F63E0007DFAE /* Info.plist */,
+				98E23C9828D1F8910007DFAE /* TestViewController.swift */,
 				98E23C9628D1F8150007DFAE /* APIKey.swift */,
 			);
 			path = TMDB_Assignment;
+			sourceTree = "<group>";
+		};
+		98E23C9A28D1F9B00007DFAE /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				98E23C9B28D1F9CC0007DFAE /* GitIgnoreExample.swift */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
+		98E23C9D28D1FA450007DFAE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				98E23C9E28D1FAC60007DFAE /* GitIgnoreExample2.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +170,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E23C9928D1F8910007DFAE /* TestViewController.swift in Sources */,
 				98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */,
 				98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */,
+				98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */,
 				98E23C9728D1F8150007DFAE /* APIKey.swift in Sources */,
+				98E23C9F28D1FAC60007DFAE /* GitIgnoreExample2.swift in Sources */,
 				98E23C8028D1F63D0007DFAE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

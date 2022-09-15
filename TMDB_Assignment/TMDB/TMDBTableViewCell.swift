@@ -13,6 +13,7 @@ class TMDBTableViewCell: UITableViewCell {
     @IBOutlet weak var releasedDateLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var TMDBUiView: UIView!
+    @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var clipButton: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingNumberLabel: UILabel!
@@ -23,12 +24,21 @@ class TMDBTableViewCell: UITableViewCell {
     @IBOutlet weak var detailInformationButton: UIButton!
     
     func configureCell() {
+        TMDBUiView.layer.borderWidth = 1
+        TMDBUiView.layer.cornerRadius = 10
+        
+        movieImageView.contentMode = .scaleToFill
+        movieImageView.layer.cornerRadius = 10
+        movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] //위쪽 모서리만 둥글게 처리
+        movieImageView.layer.masksToBounds = true
+        
         ratingLabel.text = "평점"
-        ratingLabel.backgroundColor = .purple
+        ratingLabel.backgroundColor = .systemBlue
         ratingLabel.textColor = .white
         ratingLabel.textAlignment = .center
         
         ratingNumberLabel.textAlignment = .center
+        ratingNumberLabel.backgroundColor = .white
 
         releasedDateLabel.font = .systemFont(ofSize: 12)
         genreLabel.font = .systemFont(ofSize: 17, weight: .bold)
@@ -37,10 +47,12 @@ class TMDBTableViewCell: UITableViewCell {
         detailInformationLabel.font = .systemFont(ofSize: 14)
         
         clipButton.setImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
-        clipButton.tintColor = .systemGray5
+        clipButton.tintColor = .white
+        
 
         divisionLineUiView.backgroundColor = .black
         
+        detailInformationButton.setImage(UIImage(systemName: "chevron.compact.right"), for: .normal)
         detailInformationButton.tintColor = .black
     }
     

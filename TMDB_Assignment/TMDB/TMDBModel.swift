@@ -8,8 +8,9 @@
 import Foundation
 
 struct TMDBModel {
+    let movieImage: String
     let releaseDate: String
-    let genre: String
+    let genre: Any
     let rating: String
-    let name: String
+    let movieName: String
 }

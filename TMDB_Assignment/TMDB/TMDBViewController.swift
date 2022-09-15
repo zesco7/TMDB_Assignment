@@ -11,6 +11,14 @@ import Alamofire
 import Kingfisher
 import SwiftyJSON
 
+/*질문
+ -. 이미지주소 앞부분은 TMDB 사이트 어디에 나와있는지? 구글 뒤져서 imageURL 부분 찾음...
+ -. 배열로 받은 장르코드 어떻게 해당 장르로 문자변환하는지? 1. AF로 네트워크 통신 또 해야하는지? 2. 코드랑 장르랑 매칭은 어떻게 하는지?
+ -. 캐스팅에서 영화코드는 어떻게 받아서 처리하는지?
+ -. 테이블뷰에서 UiView 테두리색없이 둥근 모서리 처리 어떻게하는지?
+ -. 과제예시에서 화면 상단에 써치바 아니라 네비게이션아이템인건지? 만약 서치바라면 예시처럼 커스텀이 되는지?(구글링에서는 예시처럼 된 커스텀 못찾음)
+ */
+
 class TMDBViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -38,14 +46,16 @@ class TMDBViewController: UIViewController {
                 print("JSON: \(json)")
                 
                 for data in json["results"].arrayValue {
+                    let poster_path = data["poster_path"].stringValue //포스터
                     let release_date = data["release_date"].stringValue //개봉일
-                    let genre_ids = data["genre_ids"].stringValue //장르
+                    let genre_ids = data["genre_ids"].arrayObject //장르
                     let vote_average = data["vote_average"].stringValue //평점
                     let title = data["title"].stringValue //제목
-                    self.TMDBArray.append(TMDBModel(releaseDate: release_date, genre: genre_ids, rating: vote_average, name: title))
+                    
+                    self.TMDBArray.append(TMDBModel(movieImage: poster_path, releaseDate: release_date, genre: genre_ids!, rating: vote_average, movieName: title))
                 }
                 self.TMDBtableView.reloadData()
-                print(self.TMDBArray)
+                print(self.TMDBArray[0])
                 
             case .failure(let error):
                 print(error)
@@ -54,7 +64,7 @@ class TMDBViewController: UIViewController {
     }
     
     func searchBarAttribute() {
-        
+
     }
 }
 
@@ -67,12 +77,16 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource, UISear
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TMDBTableViewCell.identifier, for: indexPath) as? TMDBTableViewCell else { return UITableViewCell() }
         
         cell.configureCell()
-        
+        let imageURL = "https://image.tmdb.org/t/p/w185"
+        let url = URL(string: "\(imageURL)\(TMDBArray[indexPath.row].movieImage)")
+        let genreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
+        //let castURL = "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
+    
+        cell.movieImageView.kf.setImage(with: url)
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
-        cell.genreLabel.text = TMDBArray[indexPath.row].genre
-        cell.movieTitle.text = TMDBArray[indexPath.row].name
+        cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
+        cell.movieTitle.text = TMDBArray[indexPath.row].movieName
         cell.ratingNumberLabel.text = TMDBArray[indexPath.row].rating
-        
         
         return cell
         
@@ -83,7 +97,7 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource, UISear
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        <#code#>
+        //
     }
     
     

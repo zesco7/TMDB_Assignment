@@ -11,6 +11,9 @@
 		98004B4E28D2C51700BEB29D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B4D28D2C51700BEB29D /* Kingfisher */; };
 		98004B5128D2C52A00BEB29D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B5028D2C52A00BEB29D /* SwiftyJSON */; };
 		98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98004B5228D2CDD400BEB29D /* TMDBModel.swift */; };
+		98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */; };
+		98B621DB28D42C61004FE826 /* MovieDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */; };
+		98B621DC28D42C61004FE826 /* MovieDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */; };
 		98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C7D28D1F63D0007DFAE /* AppDelegate.swift */; };
 		98E23C8028D1F63D0007DFAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */; };
 		98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C8128D1F63D0007DFAE /* ViewController.swift */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		98004B5228D2CDD400BEB29D /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
+		98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		98E23C7A28D1F63D0007DFAE /* TMDB_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E23C7D28D1F63D0007DFAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				98E23CAA28D2B4180007DFAE /* TMDBTableViewCell.swift */,
 				98E23CAB28D2B4180007DFAE /* TMDBTableViewCell.xib */,
 				98004B5228D2CDD400BEB29D /* TMDBModel.swift */,
+				98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */,
+				98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */,
+				98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -193,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98E23C9528D1F7520007DFAE /* .gitignore in Resources */,
+				98B621DC28D42C61004FE826 /* MovieDetailsTableViewCell.xib in Resources */,
 				98E23C8A28D1F63E0007DFAE /* LaunchScreen.storyboard in Resources */,
 				98E23CAD28D2B4180007DFAE /* TMDBTableViewCell.xib in Resources */,
 				98E23C8728D1F63E0007DFAE /* Assets.xcassets in Resources */,
@@ -210,8 +220,10 @@
 				98E23C9928D1F8910007DFAE /* TestViewController.swift in Sources */,
 				98E23CAC28D2B4180007DFAE /* TMDBTableViewCell.swift in Sources */,
 				98E23CA828D2B39F0007DFAE /* TMDBViewController.swift in Sources */,
+				98B621DB28D42C61004FE826 /* MovieDetailsTableViewCell.swift in Sources */,
 				98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */,
 				98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */,
+				98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */,
 				98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */,
 				98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */,
 				98E23C9728D1F8150007DFAE /* APIKey.swift in Sources */,

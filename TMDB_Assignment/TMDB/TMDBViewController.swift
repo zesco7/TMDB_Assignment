@@ -100,6 +100,8 @@ class TMDBViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    
+    
     func searchBarAttribute() {
         
         

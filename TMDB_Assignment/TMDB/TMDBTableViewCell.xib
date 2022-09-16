@@ -90,6 +90,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title=""/>
+                                <connections>
+                                    <action selector="clipButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3kB-tv-IYz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

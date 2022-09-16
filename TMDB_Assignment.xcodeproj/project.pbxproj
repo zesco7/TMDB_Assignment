@@ -14,6 +14,8 @@
 		98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */; };
 		98B621DB28D42C61004FE826 /* MovieDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */; };
 		98B621DC28D42C61004FE826 /* MovieDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */; };
+		98B621E128D4D4A9004FE826 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621E028D4D4A9004FE826 /* WebViewController.swift */; };
+		98B621E428D4D6FD004FE826 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B621E328D4D6FD004FE826 /* WebKit.framework */; };
 		98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C7D28D1F63D0007DFAE /* AppDelegate.swift */; };
 		98E23C8028D1F63D0007DFAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */; };
 		98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23C8128D1F63D0007DFAE /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 		98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		98B621E028D4D4A9004FE826 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		98B621E328D4D6FD004FE826 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		98E23C7A28D1F63D0007DFAE /* TMDB_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E23C7D28D1F63D0007DFAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98B621E428D4D6FD004FE826 /* WebKit.framework in Frameworks */,
 				98004B5128D2C52A00BEB29D /* SwiftyJSON in Frameworks */,
 				98004B4E28D2C51700BEB29D /* Kingfisher in Frameworks */,
 				98004B4B28D2C50A00BEB29D /* Alamofire in Frameworks */,
@@ -67,12 +72,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98B621E228D4D6FD004FE826 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98B621E328D4D6FD004FE826 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		98E23C7128D1F63D0007DFAE = {
 			isa = PBXGroup;
 			children = (
 				98E23C9428D1F7520007DFAE /* .gitignore */,
 				98E23C7C28D1F63D0007DFAE /* TMDB_Assignment */,
 				98E23C7B28D1F63D0007DFAE /* Products */,
+				98B621E228D4D6FD004FE826 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +143,7 @@
 				98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */,
 				98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */,
 				98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */,
+				98B621E028D4D4A9004FE826 /* WebViewController.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -228,6 +243,7 @@
 				98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */,
 				98E23C9728D1F8150007DFAE /* APIKey.swift in Sources */,
 				98E23C9F28D1FAC60007DFAE /* GitIgnoreExample2.swift in Sources */,
+				98B621E128D4D4A9004FE826 /* WebViewController.swift in Sources */,
 				98E23C8028D1F63D0007DFAE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

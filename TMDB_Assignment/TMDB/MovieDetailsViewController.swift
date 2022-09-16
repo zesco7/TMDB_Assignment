@@ -7,10 +7,22 @@
 
 import UIKit
 
+import Alamofire
+import Kingfisher
+import SwiftyJSON
+
+/*질문
+ -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나?
+ */
 class MovieDetailsViewController: UIViewController {
     static var identifier = "MovieDetailsViewController"
 
     @IBOutlet weak var movieDetailTableView: UITableView!
+    @IBOutlet weak var movieImageView: UIImageView!
+    
+    var movieID = UserDefaults.standard.integer(forKey: "movieId") //화면전환시 TMDB 정보수신: 영화ID
+    
+    var castArray : [CastModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +31,45 @@ class MovieDetailsViewController: UIViewController {
         movieDetailTableView.dataSource = self
         movieDetailTableView.register(UINib(nibName: "MovieDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailsTableViewCell.identifier)
         
+        let url = URL(string: UserDefaults.standard.string(forKey: "imageURL")!) //화면전환시 TMDB 정보수신: 영화이미지
+        movieImageView.kf.setImage(with: url)
+        movieImageView.contentMode = .scaleToFill
+        
+        requestCast(movieId: movieID)
     }
     
+    func requestCast(movieId: Int) {
+        let castUrl = "\(EndPoint.CastURL)\(movieId)/credits?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
+        AF.request(castUrl, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for data in json["cast"].arrayValue {
+                    let profile_path = data["profile_path"].stringValue
+                    let name = data["name"].stringValue
+                    let character = data["character"].stringValue
+                    self.castArray.append(CastModel(profile: profile_path, actor: name, character: character))
+                }
+                
+                self.movieDetailTableView.reloadData()
+                print(self.castArray)
+                
+            case .failure(let error):
+                print(error)
+            }
+            //let castURL = "https://api.themoviedb.org/3/movie/852448/images?api_key=9a2ad201c752108bc7ef6648ba28b7ef&language=en-US"
+        }
+    }
 
 }
+
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 100
+            return castArray.count
         } else {
             return 0
         }
@@ -42,9 +84,11 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsTableViewCell.identifier, for: indexPath) as? MovieDetailsTableViewCell else { return UITableViewCell() }
-        
-        
-        
+        let imageURL = "https://image.tmdb.org/t/p/w185"
+        let url = URL(string: "\(imageURL)"+castArray[indexPath.row].profile)
+        cell.actorImageView.kf.setImage(with: url)
+        cell.actorName.text = castArray[indexPath.row].actor
+        cell.characterName.text = castArray[indexPath.row].character
         
         return cell
     }

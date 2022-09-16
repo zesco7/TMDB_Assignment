@@ -16,6 +16,8 @@ struct TMDBModel {
     let movieName: String
 }
 
-struct GenreModel {
-    let genre : [Int: String]
+struct CastModel {
+    let profile: String
+    let actor: String
+    let character: String
 }

@@ -17,6 +17,7 @@ import SwiftyJSON
  -. 캐스팅에서 영화코드는 어떻게 받아서 처리하는지?
  -. 테이블뷰에서 UiView 테두리색없이 둥근 모서리 처리 어떻게하는지?
  -. 과제예시에서 화면 상단에 써치바 아니라 네비게이션아이템인건지? 만약 서치바라면 예시처럼 커스텀이 되는지?(구글링에서는 예시처럼 된 커스텀 못찾음)
+ -. 받아온 장르데이터를 어떻게 코드에 매칭시키는지? contain 사용? 장르코드 배열 중 첫번째 값이 장르데이터에 있으면 장르로 표시하려고 하는데 조건적용 못하겠음(115행처럼)
  */
 
 class TMDBViewController: UIViewController {
@@ -25,6 +26,7 @@ class TMDBViewController: UIViewController {
     @IBOutlet weak var TMDBtableView: UITableView!
     
     var TMDBArray : [TMDBModel] = []
+    var movieGenre : [GenreModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class TMDBViewController: UIViewController {
         TMDBtableView.register(UINib(nibName: "TMDBTableViewCell", bundle: nil), forCellReuseIdentifier: TMDBTableViewCell.identifier)
         
         requestTMDB()
+        requestGenre()
     }
     
     func requestTMDB() {
@@ -63,6 +66,29 @@ class TMDBViewController: UIViewController {
         }
     }
     
+    func requestGenre() { //장르 데이터 요청
+        let url = "\(EndPoint.GenreURL)\(APIKey.TMDBAPIKey)&language=en-US"
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for data in json["genres"].arrayValue {
+                    let id = data["id"].intValue
+                    let name = data["name"].stringValue
+                    self.movieGenre.append(GenreModel(genre: [id: name]))
+                }
+                self.TMDBtableView.reloadData()
+                print(self.movieGenre)
+                //print(self.movieGenre.contains { $0.genre == 14 })
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func searchBarAttribute() {
 
     }
@@ -77,14 +103,17 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource, UISear
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TMDBTableViewCell.identifier, for: indexPath) as? TMDBTableViewCell else { return UITableViewCell() }
         
         cell.configureCell()
+        
+        //서버통신 시점에서 url변환하면 시간이 더 오래걸릴 수 있기 때문에 셀재사용할 때 url변환하는 것이 좋음
         let imageURL = "https://image.tmdb.org/t/p/w185"
-        let url = URL(string: "\(imageURL)\(TMDBArray[indexPath.row].movieImage)")
-        let genreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
+        let url = URL(string: "\(imageURL)\(TMDBArray[indexPath.row].movieImage)") 
+
         //let castURL = "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
-    
+        
         cell.movieImageView.kf.setImage(with: url)
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
-        cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
+        cell.genreLabel.text = "\(movieGenre[0].genre.values)"
+        //cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
         cell.movieTitle.text = TMDBArray[indexPath.row].movieName
         cell.ratingNumberLabel.text = TMDBArray[indexPath.row].rating
         

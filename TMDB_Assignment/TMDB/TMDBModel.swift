@@ -14,3 +14,7 @@ struct TMDBModel {
     let rating: String
     let movieName: String
 }
+
+struct GenreModel {
+    let genre : [Int: String]
+}

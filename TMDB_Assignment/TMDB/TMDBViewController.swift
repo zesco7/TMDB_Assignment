@@ -19,7 +19,7 @@ import SwiftyJSON
  -. 과제예시에서 화면 상단에 써치바 아니라 네비게이션아이템인건지? 만약 서치바라면 예시처럼 커스텀이 되는지?(구글링에서는 예시처럼 된 커스텀 못찾음)
  -. 받아온 장르데이터를 어떻게 코드에 매칭시키는지? contain 사용? 장르코드 배열 중 첫번째 값이 장르데이터에 있으면 장르로 표시하려고 하는데 조건적용 못하겠음(= "\(genreArray[0].genre.values)"처럼). 네트워크요청함수사용해서 처리해야할 것같은데 셀재사용안하고 어떻게 매개변수랑 인덱스를 맞추는지?
  -. 만약 전체 페이지가 1억개인데 페이지네이션 처리안하면 어떻게 되는지? 페이지네이션 사용유무 차이 의미?
- -. 장르코드에 딕셔너리형태 데이터 어떻게 집어넣는지?
+ -. 장르코드에 딕셔너리형태 데이터 어떻게 집어넣는지? "\(genreArray[TMDBArray[indexPath.row].genre[0].key])"처럼 장르데이터에 해당장르코드키값을 넣어야하는데 문법에서? 에러발생함.
  -. 장르코드 배열값에 접근하는 방법이 무엇인지? print(TMDBArray[indexPath.row].genre[0]) 하면 불일치 에러 발생
  */
 
@@ -130,7 +130,7 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
         print(genreArray[14])
         //print(TMDBArray[indexPath.row].genre[0])
-        //cell.genreLabel.text = "\(genreArray[TMDBArray[indexPath.row].genre])"
+        cell.genreLabel.text = "\(genreArray[TMDBArray[indexPath.row].genre[0].key])"
         //cell.genreLabel.text = "\(genreArray[0].genre.values)"
         //cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
         cell.movieTitle.text = TMDBArray[indexPath.row].movieName

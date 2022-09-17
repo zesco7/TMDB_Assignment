@@ -154,6 +154,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="UIView" destination="HlV-lB-FAp" id="JCV-04-KRO"/>
                         <outlet property="webView" destination="sf8-Vy-cPh" id="XGU-UP-Nak"/>
                     </connections>
                 </viewController>

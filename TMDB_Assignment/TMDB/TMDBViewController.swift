@@ -20,6 +20,7 @@ import SwiftyJSON
  -. 받아온 장르데이터를 어떻게 코드에 매칭시키는지? contain 사용? 장르코드 배열 중 첫번째 값이 장르데이터에 있으면 장르로 표시하려고 하는데 조건적용 못하겠음(= "\(genreArray[0].genre.values)"처럼). 네트워크요청함수사용해서 처리해야할 것같은데 셀재사용안하고 어떻게 매개변수랑 인덱스를 맞추는지?
  -. 만약 전체 페이지가 1억개인데 페이지네이션 처리안하면 어떻게 되는지? 페이지네이션 사용유무 차이 의미?
  -. 장르코드에 딕셔너리형태 데이터 어떻게 집어넣는지?
+ -. 장르코드 배열값에 접근하는 방법이 무엇인지? print(TMDBArray[indexPath.row].genre[0]) 하면 불일치 에러 발생
  */
 
 class TMDBViewController: UIViewController, UISearchBarDelegate {
@@ -66,9 +67,9 @@ class TMDBViewController: UIViewController, UISearchBarDelegate {
                 }
                 
                 self.requestGenre()
+                self.TMDBtableView.reloadData()
                 
-                //self.TMDBtableView.reloadData()
-                print(self.TMDBArray[0])
+                print(self.TMDBArray)
                 
             case .failure(let error):
                 print(error)
@@ -87,12 +88,11 @@ class TMDBViewController: UIViewController, UISearchBarDelegate {
                 for data in json["genres"].arrayValue {
                     let id = data["id"].intValue
                     let name = data["name"].stringValue
-                    //self.genreArray.append([id: name])
+                    self.genreArray[id] = name
                     
                 }
                 self.TMDBtableView.reloadData()
                 print(self.genreArray)
-                //print(self.genreArray.contains { $0.genre == 14 })
                 
             case .failure(let error):
                 print(error)
@@ -125,10 +125,11 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         let url = URL(string: "\(imageURL)\(TMDBArray[indexPath.row].movieImage)")
         UserDefaults.standard.set("\(imageURL)\(TMDBArray[indexPath.row].movieImage)", forKey: "imageURL")
         
-        UserDefaults.standard.set(TMDBArray[indexPath.row].movieId, forKey: "movieId")
         
         cell.movieImageView.kf.setImage(with: url)
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
+        print(genreArray[14])
+        //print(TMDBArray[indexPath.row].genre[0])
         //cell.genreLabel.text = "\(genreArray[TMDBArray[indexPath.row].genre])"
         //cell.genreLabel.text = "\(genreArray[0].genre.values)"
         //cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
@@ -146,6 +147,8 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UserDefaults.standard.set(TMDBArray[indexPath.row].movieId, forKey: "movieId")
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier)
         self.navigationController?.pushViewController(vc, animated: true)

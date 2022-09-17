@@ -12,7 +12,7 @@ import Kingfisher
 import SwiftyJSON
 
 /*질문
- -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나?
+ -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나? -> 시도: TMDB에서 받은 영화ID로 MovieDetail에서 backdrop_path데이터 받아서 화면에 띄우기(데이터까지는 받아왔는데 cellForRowAt에서 헤더뷰 어떻게 접근하는지?
  */
 class MovieDetailsViewController: UIViewController {
     static var identifier = "MovieDetailsViewController"
@@ -31,11 +31,8 @@ class MovieDetailsViewController: UIViewController {
         movieDetailTableView.dataSource = self
         movieDetailTableView.register(UINib(nibName: "MovieDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailsTableViewCell.identifier)
         
-        let url = URL(string: UserDefaults.standard.string(forKey: "imageURL")!) //화면전환시 TMDB 정보수신: 영화이미지
-        movieImageView.kf.setImage(with: url)
-        movieImageView.contentMode = .scaleToFill
-        
         requestCast(movieId: movieID)
+        movieImageViewAttribute()
     }
     
     func requestCast(movieId: Int) {
@@ -48,13 +45,14 @@ class MovieDetailsViewController: UIViewController {
                 
                 for data in json["cast"].arrayValue {
                     let profile_path = data["profile_path"].stringValue
+                    let backdrop_path = data["backdrop_path"].stringValue
                     let name = data["name"].stringValue
                     let character = data["character"].stringValue
-                    self.castArray.append(CastModel(profile: profile_path, actor: name, character: character))
+                    self.castArray.append(CastModel(profile: profile_path, backdrop: backdrop_path, actor: name, character: character))
                 }
                 
                 self.movieDetailTableView.reloadData()
-                print(self.castArray)
+                //print(self.castArray)
                 
             case .failure(let error):
                 print(error)
@@ -63,6 +61,9 @@ class MovieDetailsViewController: UIViewController {
         }
     }
 
+    func movieImageViewAttribute() {
+        movieImageView.contentMode = .scaleToFill
+    }
 }
 
 extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -85,8 +86,12 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsTableViewCell.identifier, for: indexPath) as? MovieDetailsTableViewCell else { return UITableViewCell() }
         let imageURL = "https://image.tmdb.org/t/p/w185"
-        let url = URL(string: "\(imageURL)"+castArray[indexPath.row].profile)
-        cell.actorImageView.kf.setImage(with: url)
+        let profileURL = URL(string: "\(imageURL)"+castArray[indexPath.row].profile)
+        cell.actorImageView.kf.setImage(with: profileURL)
+        
+        let backdropURL = URL(string: "\(imageURL)"+castArray[indexPath.row].backdrop)
+        self.movieImageView.kf.setImage(with: backdropURL)
+        
         cell.actorName.text = castArray[indexPath.row].actor
         cell.characterName.text = castArray[indexPath.row].character
         

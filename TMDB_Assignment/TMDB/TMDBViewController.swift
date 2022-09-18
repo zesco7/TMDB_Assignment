@@ -130,7 +130,7 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
         print(genreArray[14])
         //print(TMDBArray[indexPath.row].genre[0])
-        cell.genreLabel.text = "\(genreArray[TMDBArray[indexPath.row].genre[0].key])"
+        //cell.genreLabel.text = "\(genreArray[TMDBArray[indexPath.row].genre[0].key])"
         //cell.genreLabel.text = "\(genreArray[0].genre.values)"
         //cell.genreLabel.text = "\(TMDBArray[indexPath.row].genre)"
         cell.movieTitle.text = TMDBArray[indexPath.row].movieName
@@ -148,6 +148,7 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserDefaults.standard.set(TMDBArray[indexPath.row].movieId, forKey: "movieId")
+        UserDefaults.standard.set(TMDBArray[indexPath.row].movieImage, forKey: "movieImage")
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier)

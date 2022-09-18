@@ -75,7 +75,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             case .failure(let error):
                 print(error)
             }
-        
         }
     }
     

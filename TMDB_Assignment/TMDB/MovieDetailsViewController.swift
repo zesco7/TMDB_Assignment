@@ -21,8 +21,10 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieImageView: UIImageView!
     
     var movieID = UserDefaults.standard.integer(forKey: "movieId") //화면전환시 TMDB 정보수신: 영화ID
-    
+    var movieImage = UserDefaults.standard.string(forKey: "movieImage") //화면전환시 TMDB 정보수신: 영화이미지
     var castArray : [CastModel] = []
+    var startPage = 0
+    var totalCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,9 @@ class MovieDetailsViewController: UIViewController {
         movieDetailTableView.delegate = self
         movieDetailTableView.dataSource = self
         movieDetailTableView.register(UINib(nibName: "MovieDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailsTableViewCell.identifier)
+    
+        let headerImageURL = URL(string: movieImage!)
+        self.movieImageView.kf.setImage(with: headerImageURL)
         
         requestCast(movieId: movieID)
         movieImageViewAttribute()
@@ -41,14 +46,13 @@ class MovieDetailsViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+                //print("JSON: \(json)")
                 
                 for data in json["cast"].arrayValue {
                     let profile_path = data["profile_path"].stringValue
-                    let backdrop_path = data["backdrop_path"].stringValue
                     let name = data["name"].stringValue
                     let character = data["character"].stringValue
-                    self.castArray.append(CastModel(profile: profile_path, backdrop: backdrop_path, actor: name, character: character))
+                    self.castArray.append(CastModel(profile: profile_path, actor: name, character: character))
                 }
                 
                 self.movieDetailTableView.reloadData()
@@ -88,9 +92,6 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
         let imageURL = "https://image.tmdb.org/t/p/w185"
         let profileURL = URL(string: "\(imageURL)"+castArray[indexPath.row].profile)
         cell.actorImageView.kf.setImage(with: profileURL)
-        
-        let backdropURL = URL(string: "\(imageURL)"+castArray[indexPath.row].backdrop)
-        self.movieImageView.kf.setImage(with: backdropURL)
         
         cell.actorName.text = castArray[indexPath.row].actor
         cell.characterName.text = castArray[indexPath.row].character

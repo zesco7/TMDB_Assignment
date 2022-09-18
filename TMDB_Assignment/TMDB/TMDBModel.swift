@@ -18,7 +18,6 @@ struct TMDBModel {
 
 struct CastModel {
     let profile: String
-    let backdrop: String
     let actor: String
     let character: String
 }

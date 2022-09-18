@@ -12,7 +12,7 @@ import Kingfisher
 import SwiftyJSON
 
 /*질문
- -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나? -> 시도: TMDB에서 받은 영화ID로 MovieDetail에서 backdrop_path데이터 받아서 화면에 띄우기(데이터까지는 받아왔는데 cellForRowAt에서 헤더뷰 어떻게 접근하는지?
+ -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나? -> 해결: 화면전환시 이동전화면에서 데이터 받아와서 이동예정화면 프로퍼티에 저장하고 그 값을 화면에 띄움.(UserDefaults도 데이터 저장을 할 수는 있지만 성격에 맞지 않으므로 사용X)
  */
 class MovieDetailsViewController: UIViewController {
     static var identifier = "MovieDetailsViewController"
@@ -20,8 +20,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieDetailTableView: UITableView!
     @IBOutlet weak var movieImageView: UIImageView!
     
-    var movieID = UserDefaults.standard.integer(forKey: "movieId") //화면전환시 TMDB 정보수신: 영화ID
-    var movieImage = UserDefaults.standard.string(forKey: "movieImage") //화면전환시 TMDB 정보수신: 영화이미지
+    var movieID: Int? //화면전환시 TMDB 정보수신: 영화ID
+    var movieImage: String? //화면전환시 TMDB 정보수신: 영화이미지
     var castArray : [CastModel] = []
     var startPage = 0
     var totalCount = 0
@@ -33,10 +33,10 @@ class MovieDetailsViewController: UIViewController {
         movieDetailTableView.dataSource = self
         movieDetailTableView.register(UINib(nibName: "MovieDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailsTableViewCell.identifier)
     
-        let headerImageURL = URL(string: movieImage!)
+        let headerImageURL = URL(string: "\(EndPoint.imageURL)" + movieImage!)
         self.movieImageView.kf.setImage(with: headerImageURL)
         
-        requestCast(movieId: movieID)
+        requestCast(movieId: movieID!)
         movieImageViewAttribute()
     }
     
@@ -46,7 +46,7 @@ class MovieDetailsViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                //print("JSON: \(json)")
+                print("JSON: \(json)")
                 
                 for data in json["cast"].arrayValue {
                     let profile_path = data["profile_path"].stringValue

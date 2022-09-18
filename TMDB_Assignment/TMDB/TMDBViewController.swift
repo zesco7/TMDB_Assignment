@@ -100,11 +100,7 @@ class TMDBViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    
-    
     func searchBarAttribute() {
-        
-        
         
     }
     
@@ -147,12 +143,14 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserDefaults.standard.set(TMDBArray[indexPath.row].movieId, forKey: "movieId")
-        UserDefaults.standard.set(TMDBArray[indexPath.row].movieImage, forKey: "movieImage")
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier)
+        let vc = sb.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier) as! MovieDetailsViewController
+        vc.movieID = TMDBArray[indexPath.row].movieId
+        vc.movieImage = TMDBArray[indexPath.row].movieImage
+        print(TMDBArray[indexPath.row].movieImage)
         self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }

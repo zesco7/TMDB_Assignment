@@ -55,17 +55,4 @@ class TMDBTableViewCell: UITableViewCell {
         detailInformationButton.setImage(UIImage(systemName: "chevron.compact.right"), for: .normal)
         detailInformationButton.tintColor = .black
     }
-    
-    @IBAction func clipButtonClicked(_ sender: UIButton) {
-        
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate =  windowScene?.delegate as? SceneDelegate
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        let navi = UINavigationController(rootViewController: vc)
-        sceneDelegate?.window?.rootViewController = navi
-        sceneDelegate?.window?.makeKeyAndVisible()
-        
-    }
-    
 }

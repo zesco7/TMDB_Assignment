@@ -24,7 +24,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet var UIView: UIView!
     
-    var movieID = UserDefaults.standard.integer(forKey: "movieId") //화면전환시 TMDB 정보수신: 영화ID
+    var movieID: Int? //화면전환시 TMDB 정보수신: 영화ID
     var keyArray = [String]()
     
     
@@ -32,8 +32,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         var videoURL = "\(EndPoint.YouTubeURL)\(keyArray)"
-        
-        requestVideo(movieId: movieID)
+        print(movieID)
+        //requestVideo(movieId: movieID)
         loadVideo(url: videoURL)
         navigationItemAttribute()
 

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct TMDBModel {
     let movieId: Int
     let movieImage: String
     let releaseDate: String
-    let genre: Any
+    let genre: [Int]
     let rating: String
     let movieName: String
 }

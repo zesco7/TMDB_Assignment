@@ -52,7 +52,7 @@ class MovieDetailsViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+                //print("JSON: \(json)")
                 
                 for data in json["cast"].arrayValue {
                     let profile_path = data["profile_path"].stringValue
@@ -85,6 +85,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return 0
         }
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Cast"

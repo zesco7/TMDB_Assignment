@@ -14,6 +14,12 @@ import SwiftyJSON
 /*질문
  -. TMDB화면에서 받은 데이터가 일치하지 않는 이유? 클릭했을 때 시점에서 UserDefaults데이터 받아왔는데 인덱스불일치가 일어날수 있나? -> 해결: 화면전환시 이동전화면에서 데이터 받아와서 이동예정화면 프로퍼티에 저장하고 그 값을 화면에 띄움.(UserDefaults도 데이터 저장을 할 수는 있지만 성격에 맞지 않으므로 사용X)
  */
+
+/*포인트
+ -. 데이터 전달 잘한것 같은데 화면표시가 이상하다면 데이터가 잘 전달되었는지 print로 꼭 확인해야함.
+ >>. "\(EndPoint.imageURL)"가 빠져있었기 때문에 movieImage에는 이미지 주소 일부만 들어가 있던 것임(그러니까 킹피셔 형식에 맞지 않아 화면표시 안됐던것)
+ 
+ */
 class MovieDetailsViewController: UIViewController {
     static var identifier = "MovieDetailsViewController"
 

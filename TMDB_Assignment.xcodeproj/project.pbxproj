@@ -11,6 +11,7 @@
 		98004B4E28D2C51700BEB29D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B4D28D2C51700BEB29D /* Kingfisher */; };
 		98004B5128D2C52A00BEB29D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B5028D2C52A00BEB29D /* SwiftyJSON */; };
 		98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98004B5228D2CDD400BEB29D /* TMDBModel.swift */; };
+		9894586828D7620000203DC3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894586728D7620000203DC3 /* APIManager.swift */; };
 		98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */; };
 		98B621DB28D42C61004FE826 /* MovieDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */; };
 		98B621DC28D42C61004FE826 /* MovieDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		98004B5228D2CDD400BEB29D /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
+		9894586728D7620000203DC3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		98B621CB28D4280A004FE826 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		98B621D928D42C61004FE826 /* MovieDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		98B621DA28D42C61004FE826 /* MovieDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsTableViewCell.xib; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				98E23C9B28D1F9CC0007DFAE /* GitIgnoreExample.swift */,
 				98E23C9628D1F8150007DFAE /* APIKey.swift */,
+				9894586728D7620000203DC3 /* APIManager.swift */,
 			);
 			path = Key;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				98B621DB28D42C61004FE826 /* MovieDetailsTableViewCell.swift in Sources */,
 				98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */,
 				98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */,
+				9894586828D7620000203DC3 /* APIManager.swift in Sources */,
 				98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */,
 				98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */,
 				98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */,

@@ -25,16 +25,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var UIView: UIView!
     
     var movieID: Int? //화면전환시 TMDB 정보수신: 영화ID
-    var keyArray = [String]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var videoURL = "\(EndPoint.YouTubeURL)\(keyArray)"
-        print(movieID)
-        //requestVideo(movieId: movieID)
-        loadVideo(url: videoURL)
+        requestTrailer(movieID: 985939)
+    
         navigationItemAttribute()
 
     }
@@ -54,27 +50,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     
-    func requestVideo(movieId: Int) {
-        let castUrl = "\(EndPoint.CastURL)\(movieId)/videos?api_key=\(APIKey.TMDBAPIKey)&language=en-US"
-        AF.request(castUrl, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                for data in json["results"].arrayValue {
-                    let key = data["key"].stringValue
-                
-                    self.keyArray.append(key)
-                }
-                
-                self.reloadInputViews()
-                
-                print(self.keyArray)
-                
-            case .failure(let error):
-                print(error)
-            }
+    func requestTrailer(movieID: Int) {
+        APIManager.shared.requestVideoKey(movieId: movieID) { movieKey in
+            self.loadVideo(url: movieKey)
+            print(movieID)
         }
     }
     
@@ -87,3 +66,5 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         webView.load(request)
     }
 }
+
+

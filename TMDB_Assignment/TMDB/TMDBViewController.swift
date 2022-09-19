@@ -44,6 +44,7 @@ class TMDBViewController: UIViewController, UISearchBarDelegate {
         TMDBtableView.register(UINib(nibName: "TMDBTableViewCell", bundle: nil), forCellReuseIdentifier: TMDBTableViewCell.identifier)
         
         requestTMDB()
+        
     }
     
     func requestTMDB() {
@@ -135,12 +136,21 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    /*clipButtonClicked(링크버튼눌렀을 때 데이터처리)
+      #필요한데이터: 영화코드데이터
+      #연산
+      -.링크버튼을 누르면 영화코드데이터를 예고편화면으로 전달
+      -.받은영화코드로 해당 예고편데이터를 네트워크요청해서 화면 띄우기
+      #보여줄데이터: 영화예고편
+     */
+    
     @objc func clipButtonClicked(sender: UIButton) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate =  windowScene?.delegate as? SceneDelegate
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
         let navi = UINavigationController(rootViewController: vc)
+        vc.movieID =
         sceneDelegate?.window?.rootViewController = navi
         sceneDelegate?.window?.makeKeyAndVisible()
     }
@@ -157,10 +167,10 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier) as! MovieDetailsViewController
-        let webVc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        //let webVc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
         vc.movieID = TMDBArray[indexPath.row].movieId
         vc.movieImage = TMDBArray[indexPath.row].movieImage
-        webVc.movieID = TMDBArray[indexPath.row].movieId
+        //webVc.movieID = TMDBArray[indexPath.row].movieId
         print(TMDBArray[indexPath.row].movieImage)
         self.navigationController?.pushViewController(vc, animated: true)
         

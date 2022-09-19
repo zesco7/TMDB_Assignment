@@ -48,11 +48,12 @@ class TMDBTableViewCell: UITableViewCell {
         
         clipButton.setImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
         clipButton.tintColor = .white
-        
-
+    
         divisionLineUiView.backgroundColor = .black
         
         detailInformationButton.setImage(UIImage(systemName: "chevron.compact.right"), for: .normal)
         detailInformationButton.tintColor = .black
+        
     }
+    
 }

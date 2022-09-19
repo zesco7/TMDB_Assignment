@@ -131,7 +131,11 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         cell.releasedDateLabel.text = TMDBArray[indexPath.row].releaseDate
         cell.genreLabel.text = "#\(genreArray[TMDBArray[indexPath.row].genre[0]]!)"
         cell.movieTitle.text = TMDBArray[indexPath.row].movieName
-        cell.clipButton.addTarget(self, action: #selector(clipButtonClicked), for: .touchUpInside)
+        cell.clipButton.tag = indexPath.row
+        cell.clipButton.addTarget(self, action: #selector(clipButtonClicked(sender:)), for: .touchUpInside)
+        
+        cell.tag = indexPath.row
+        print(cell.tag)
 
         return cell
     }
@@ -150,7 +154,7 @@ extension TMDBViewController: UITableViewDelegate, UITableViewDataSource {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
         let navi = UINavigationController(rootViewController: vc)
-        vc.movieID =
+        vc.movieID = TMDBArray[sender.tag].movieId //sender.tag사용하여 버튼에 태그를 설정하여 indexPath대신 sender.tag로 영화id 넘김
         sceneDelegate?.window?.rootViewController = navi
         sceneDelegate?.window?.makeKeyAndVisible()
     }

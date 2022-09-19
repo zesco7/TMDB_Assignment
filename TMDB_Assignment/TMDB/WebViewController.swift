@@ -29,7 +29,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestTrailer(movieID: 985939)
+        requestTrailer(movieID: movieID!)
     
         navigationItemAttribute()
 

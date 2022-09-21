@@ -1,34 +1,31 @@
 //
-//  MovieListTableViewCell.swift
+//  MoviePosterListTableViewCell.swift
 //  TMDB_Assignment
 //
-//  Created by Mac Pro 15 on 2022/09/20.
+//  Created by Mac Pro 15 on 2022/09/21.
 //
 
 import UIKit
 
-class MovieListTableViewCell: UITableViewCell {
-    static var identifier = "MovieListTableViewCell"
+class MoviePosterListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var movieListCollectionView: UICollectionView!
+    @IBOutlet weak var contentsCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         setupUI()
     }
-
+    
     func setupUI() {
-        categoryLabel.font = .boldSystemFont(ofSize: 24)
-        categoryLabel.text = "아는와이프와 비슷한 콘텐츠"
+        categoryLabel.text = "카테고리"
+        categoryLabel.textColor = .white
         categoryLabel.backgroundColor = .clear
-        
-        movieListCollectionView.backgroundColor = .clear
-        movieListCollectionView.collectionViewLayout = collectionViewLayout()
+        contentsCollectionView.collectionViewLayout = contentsCollectionViewLayout()
+        self.backgroundColor = .black
     }
     
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
+    func contentsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 100, height: 130) //셀가로: 화면가로, 셀세로를 콜렉션뷰 세로만큼으로 지정

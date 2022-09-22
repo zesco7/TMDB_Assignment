@@ -44,6 +44,7 @@
 		98E23CA828D2B39F0007DFAE /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23CA728D2B39F0007DFAE /* TMDBViewController.swift */; };
 		98E23CAC28D2B4180007DFAE /* TMDBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E23CAA28D2B4180007DFAE /* TMDBTableViewCell.swift */; };
 		98E23CAD28D2B4180007DFAE /* TMDBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98E23CAB28D2B4180007DFAE /* TMDBTableViewCell.xib */; };
+		98EE8C6F28DC449A00898165 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EE8C6E28DC449A00898165 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		98E23CA728D2B39F0007DFAE /* TMDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBViewController.swift; sourceTree = "<group>"; };
 		98E23CAA28D2B4180007DFAE /* TMDBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBTableViewCell.swift; sourceTree = "<group>"; };
 		98E23CAB28D2B4180007DFAE /* TMDBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TMDBTableViewCell.xib; sourceTree = "<group>"; };
+		98EE8C6E28DC449A00898165 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				98E23C7F28D1F63D0007DFAE /* SceneDelegate.swift */,
 				98E23C8128D1F63D0007DFAE /* ViewController.swift */,
 				98E23C8328D1F63D0007DFAE /* Main.storyboard */,
+				98EE8C7028DC44A400898165 /* Map */,
 				98E23CA928D2B3DD0007DFAE /* TMDB */,
 				98AAE70D28DA069300CBDA46 /* TMBD View */,
 				98E23C8828D1F63E0007DFAE /* LaunchScreen.storyboard */,
@@ -204,6 +207,14 @@
 				98B621E028D4D4A9004FE826 /* WebViewController.swift */,
 			);
 			path = TMDB;
+			sourceTree = "<group>";
+		};
+		98EE8C7028DC44A400898165 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				98EE8C6E28DC449A00898165 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */,
 				9864693B28DAA7CD004A4DF5 /* StarCollectionViewCell.swift in Sources */,
 				98E23C8228D1F63D0007DFAE /* ViewController.swift in Sources */,
+				98EE8C6F28DC449A00898165 /* MapViewController.swift in Sources */,
 				9894586828D7620000203DC3 /* APIManager.swift in Sources */,
 				9864694028DAC9B6004A4DF5 /* MoviePosterView.swift in Sources */,
 				98AAE71C28DA9F6800CBDA46 /* StarView.swift in Sources */,
@@ -463,6 +475,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VSHQ8JA888;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMDB_Assignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -490,6 +503,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VSHQ8JA888;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMDB_Assignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -22,12 +22,12 @@ import CoreLocation //위치권한1. 위치권한 담당하는 라이브러리 �
 
 /*위치권한 순서
  1. 라이브러리 등록: CoreLocation
- 2. 위치 관련 이벤트 전달 관리하는 클래스 등록
- 3,4. 프로토콜 연결, 선언
- 5,6. 위치권한 요청 성공, 실패 메서드 생성
- 7. iOS버전에 따라 iOS위치서비스 활성화 여부 확인 *실제 코드실행은 7이 5,6보다 먼저 실행
- 8. 사용자의 위치 권한 상태 확인
- 9. 사용자 권한 상태 바뀔때를 알려줌
+ 2. 위치 관련 이벤트 전달 관리하는 클래스 등록: CLLocationManager
+ 3,4. 프로토콜 연결, 선언: CLLocationManagerDelegate
+ 5,6. 위치권한 요청 성공, 실패 메서드 생성: didUpdateLocations, didFailWithError
+ 7. iOS버전에 따라 iOS위치서비스 활성화 여부 확인: checkUserDeviceLocationServiceAuthorization *실제 코드실행은 7이 5,6보다 먼저 실행
+ 8. 사용자의 위치 권한 상태 확인: checkUserCurrentLocationAuthorization
+ 9. 사용자 권한 상태 바뀔때를 알려줌: locationManagerDidChangeAuthorization
  */
 
 
@@ -47,6 +47,8 @@ class MapViewController: UIViewController {
         
         //위치권한3. 프로토콜 연결
         locationManager.delegate = self
+        
+        navigationAttribute()
         
         let center = CLLocationCoordinate2D(latitude: 37.544133, longitude: 127.075364)
         setRegionAndAnnotation(center: center)
@@ -75,6 +77,15 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
     
+    func navigationAttribute() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "날씨 확인", style: .plain, target: self, action: #selector(showWeatherInfo))
+    }
+    
+    @objc func showWeatherInfo() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: WeatherMapViewController.identifier) as! WeatherMapViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //위치 관련된 User Defined 메서드
@@ -113,7 +124,7 @@ extension MapViewController {
             print("NOTDETERMINED")
             locationManager.desiredAccuracy = kCLLocationAccuracyBest //위치정확도 설정
             locationManager.requestWhenInUseAuthorization() //앱을 사용하는 동안에 대한 위치 권한 요청 얼럿 실행(plist에 whenInUse등록되어있어야만 사용가능, 아니면 앱꺼짐)
-            locationManager.startUpdatingLocation() //한번 허용을 눌렀을 때 실행
+            //locationManager.startUpdatingLocation() //권한상태 변경시 WHEN IN USE에서 실행되므로 필요없음
         case .restricted, .denied:
             print("DENIED, 아이폰 설정으로 유도")
         case .authorizedWhenInUse: //위치권한 허용 상태면 startUpdatingLocation을 통해 didUpdateLocations(위치권한5) 실행
@@ -169,7 +180,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) { //iOS14 미만
-        <#code#>
+        print(#function)
     }
 }
 

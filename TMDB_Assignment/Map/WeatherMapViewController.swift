@@ -9,7 +9,13 @@ import UIKit
 import CoreLocation
 
 /*날씨 포인트
- -. 네트워크 통신할 때 클로저 사용필요: 네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
+ -.네트워크 통신: 클로저 사용필요함. 네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
+ -.테이블뷰 화면표시: 데이터 잘 받았는데 화면에 테이블뷰 안뜨면 프토토콜, xib파일(register) 연결 확인
+ -.
+ */
+
+/*질문
+ -.weatherInfo출력해보면 값이 하나 있는데 weatherInfo.count하면 왜 0인지? 
  */
 class WeatherMapViewController: UIViewController {
     static var identifier = "WeatherMapViewController"
@@ -24,6 +30,7 @@ class WeatherMapViewController: UIViewController {
         
         weatherTableView.delegate = self
         weatherTableView.dataSource = self
+        weatherTableView.register(UINib(nibName: "WeatherTableViewCell", bundle: nil), forCellReuseIdentifier: WeatherTableViewCell.identifier)
         locationManager.delegate = self
         
     }
@@ -31,21 +38,21 @@ class WeatherMapViewController: UIViewController {
 
 extension WeatherMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return weatherInfo.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
         
-        cell.configureCell()
-        cell.currentTemperature?.text = "\(weatherInfo[indexPath.row].temp)"
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+            
+            cell.configureCell()
+            cell.currentTemperature.text = "\(weatherInfo[indexPath.row].temp)"
+            
+            return cell
+        }
         
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 400
+        }
 }
 
 extension WeatherMapViewController {
@@ -107,11 +114,13 @@ extension WeatherMapViewController: CLLocationManagerDelegate {
         if let location = locations.last?.coordinate {
             print(location)
             APIManager.shared.requestWeatherInformation(latitude: location.latitude, longitude: location.longitude) { weather in
-                let weatherInfo = weather //네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
+                let weatherInformation = weather
+                //네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
                 DispatchQueue.main.async {
                     self.weatherTableView.reloadData()
                 }
-                print(weatherInfo)
+                print(weatherInformation)
+                print(self.weatherInfo.count)
             }
         }
         locationManager.stopUpdatingLocation()

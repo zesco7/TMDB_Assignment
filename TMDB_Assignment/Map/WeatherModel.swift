@@ -8,8 +8,8 @@
 import Foundation
 
 struct WeatherModel {
-    let temp: Int
+    let temp: Double
     let humidity: Int
     let windSpeed: Int
-    let id: Int
+    let icon: String
 }

@@ -8,14 +8,16 @@
 import UIKit
 import CoreLocation
 
+import Kingfisher
+
 /*날씨 포인트
  -.네트워크 통신: 클로저 사용필요함. 네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
- -.테이블뷰 화면표시: 데이터 잘 받았는데 화면에 테이블뷰 안뜨면 프토토콜, xib파일(register) 연결 확인
- -.
+ -.테이블뷰 화면표시: 데이터 잘 받았는데 화면에 테이블뷰 안뜨면 프토토콜, xib파일(register) 연결 확인한다.
+ -.ATS: 데이터 잘들어오는데 화면표시 안될 때 http체크해서 ATS 적용해준다.
  */
 
 /*질문
- -.weatherInfo출력해보면 값이 하나 있는데 weatherInfo.count하면 왜 0인지? 
+ -.weatherInfo출력해보면 값이 하나 있는데 weatherInfo.count하면 왜 0인지? -> 해결: 클로저 인자로 받은 weather를 빈배열인 weatherInfo에 바로 넣어줬어야 하는데(self.weatherInfo) 다시 변수를 만들어 값을 넣은뒤 넘겨주려고 생각하니까 헤매면서 시간낭비함.
  */
 class WeatherMapViewController: UIViewController {
     static var identifier = "WeatherMapViewController"
@@ -23,7 +25,7 @@ class WeatherMapViewController: UIViewController {
     @IBOutlet weak var weatherTableView: UITableView!
     
     let locationManager = CLLocationManager()
-    let weatherInfo : [WeatherModel] = []
+    var weatherInfo : [WeatherModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +42,20 @@ extension WeatherMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherInfo.count
     }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+ 
+            //MeasurementFormatter() 클래스 사용하면 여러가지 단위 사용 가능
+            let temperature = String(format: "%.1f", weatherInfo[indexPath.row].temp - 273.15) //섭씨변환 + 소수점 이하 자릿수 설정
             
-            cell.configureCell()
-            cell.currentTemperature.text = "\(weatherInfo[indexPath.row].temp)"
+            cell.currentTemperature.text = "   \(temperature)℃에요   "
+            cell.currentHumidity.text = "   \(weatherInfo[indexPath.row].humidity)%만큼 습해요   "
+            cell.currentWindSpeed.text = "   \(weatherInfo[indexPath.row].windSpeed)m/s의 바람이 불어요   "
+            
+            let url = URL(string: "\(EndPoint.weatherIconURL)\(weatherInfo[indexPath.row].icon)@2x.png") //클로저로 받은 날씨아이콘코드를 변수로 대입
+            cell.weatherImageView.kf.setImage(with: url)
+            cell.greetings.text = "   오늘도 행복한 하루 보내세요   "
             
             return cell
         }
@@ -53,6 +63,13 @@ extension WeatherMapViewController: UITableViewDelegate, UITableViewDataSource {
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 400
         }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm 현재시간 날씨"
+        
+        return "\(dateFormatter.string(from: Date()))"
+    }
 }
 
 extension WeatherMapViewController {
@@ -114,16 +131,17 @@ extension WeatherMapViewController: CLLocationManagerDelegate {
         if let location = locations.last?.coordinate {
             print(location)
             APIManager.shared.requestWeatherInformation(latitude: location.latitude, longitude: location.longitude) { weather in
-                let weatherInformation = weather
+                //클로저 인자로 받은 weather를 빈배열인 weatherInfo에 바로 넣어줬어야 하는데(self.weatherInfo) 다시 변수를 만들어 값을 넣은뒤 넘겨주려고 생각하니까 헤매면서 시간낭비함.
                 //네트워크 통신 결과로 받은 JSON데이터를 네트워크 통신 함수 바깥에서 사용하기 위해 클로저를 통해 completionHandler의 인자를 넘겨준다. 이때 프로퍼티를 만들고 인자를 대입하면 인자에 접근할 수 있다.
+                self.weatherInfo = weather
+                
                 DispatchQueue.main.async {
                     self.weatherTableView.reloadData()
                 }
-                print(weatherInformation)
-                print(self.weatherInfo.count)
+                print(self.weatherInfo)
             }
+            locationManager.stopUpdatingLocation()
         }
-        locationManager.stopUpdatingLocation()
     }
     
     //위치권한 사용X

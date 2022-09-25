@@ -11,6 +11,9 @@
 		98004B4E28D2C51700BEB29D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B4D28D2C51700BEB29D /* Kingfisher */; };
 		98004B5128D2C52A00BEB29D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 98004B5028D2C52A00BEB29D /* SwiftyJSON */; };
 		98004B5328D2CDD400BEB29D /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98004B5228D2CDD400BEB29D /* TMDBModel.swift */; };
+		981A5B6328E0819800C6BCBF /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A5B6228E0819800C6BCBF /* IntroPageViewController.swift */; };
+		981A5B6528E081AB00C6BCBF /* IntroFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A5B6428E081AB00C6BCBF /* IntroFirstViewController.swift */; };
+		981A5B6728E081BA00C6BCBF /* IntroSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A5B6628E081BA00C6BCBF /* IntroSecondViewController.swift */; };
 		9864693628DAA5B3004A4DF5 /* ViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864693528DAA5B3004A4DF5 /* ViewTestViewController.swift */; };
 		9864693828DAA5E7004A4DF5 /* ViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9864693728DAA5E7004A4DF5 /* ViewStoryboard.storyboard */; };
 		9864693B28DAA7CD004A4DF5 /* StarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864693928DAA7CD004A4DF5 /* StarCollectionViewCell.swift */; };
@@ -53,6 +56,9 @@
 
 /* Begin PBXFileReference section */
 		98004B5228D2CDD400BEB29D /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
+		981A5B6228E0819800C6BCBF /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
+		981A5B6428E081AB00C6BCBF /* IntroFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstViewController.swift; sourceTree = "<group>"; };
+		981A5B6628E081BA00C6BCBF /* IntroSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondViewController.swift; sourceTree = "<group>"; };
 		9864693528DAA5B3004A4DF5 /* ViewTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTestViewController.swift; sourceTree = "<group>"; };
 		9864693728DAA5E7004A4DF5 /* ViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewStoryboard.storyboard; sourceTree = "<group>"; };
 		9864693928DAA7CD004A4DF5 /* StarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -110,9 +116,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		981A5B5F28E0816A00C6BCBF /* PageView */ = {
+			isa = PBXGroup;
+			children = (
+				981A5B6228E0819800C6BCBF /* IntroPageViewController.swift */,
+				981A5B6428E081AB00C6BCBF /* IntroFirstViewController.swift */,
+				981A5B6628E081BA00C6BCBF /* IntroSecondViewController.swift */,
+			);
+			path = PageView;
+			sourceTree = "<group>";
+		};
 		98AAE70D28DA069300CBDA46 /* TMBD View */ = {
 			isa = PBXGroup;
 			children = (
+				981A5B5F28E0816A00C6BCBF /* PageView */,
 				9864693F28DAC9B6004A4DF5 /* MoviePosterView.swift */,
 				9864694128DAC9C3004A4DF5 /* MoviePosterView.xib */,
 				9864694328DACAC2004A4DF5 /* MoviePosterListViewController.swift */,
@@ -320,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98E23C9928D1F8910007DFAE /* TestViewController.swift in Sources */,
+				981A5B6328E0819800C6BCBF /* IntroPageViewController.swift in Sources */,
 				9864694A28DACC08004A4DF5 /* MoviePosterListTableViewCell.swift in Sources */,
 				98E23CAC28D2B4180007DFAE /* TMDBTableViewCell.swift in Sources */,
 				98E23CA828D2B39F0007DFAE /* TMDBViewController.swift in Sources */,
@@ -342,6 +360,8 @@
 				98E23C9C28D1F9CC0007DFAE /* GitIgnoreExample.swift in Sources */,
 				98E23C9728D1F8150007DFAE /* APIKey.swift in Sources */,
 				98E23C9F28D1FAC60007DFAE /* GitIgnoreExample2.swift in Sources */,
+				981A5B6528E081AB00C6BCBF /* IntroFirstViewController.swift in Sources */,
+				981A5B6728E081BA00C6BCBF /* IntroSecondViewController.swift in Sources */,
 				9864693E28DAB849004A4DF5 /* StarTableViewCell.swift in Sources */,
 				98B621E128D4D4A9004FE826 /* WebViewController.swift in Sources */,
 				98E23C8028D1F63D0007DFAE /* SceneDelegate.swift in Sources */,

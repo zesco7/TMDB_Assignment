@@ -25,6 +25,7 @@
 		9864694A28DACC08004A4DF5 /* MoviePosterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864694928DACC08004A4DF5 /* MoviePosterListTableViewCell.swift */; };
 		9864694D28DACC31004A4DF5 /* ContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9864694B28DACC31004A4DF5 /* ContentsCollectionViewCell.swift */; };
 		9864694E28DACC31004A4DF5 /* ContentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9864694C28DACC31004A4DF5 /* ContentsCollectionViewCell.xib */; };
+		988FD62528E13F85008760A7 /* AppLaunchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988FD62428E13F85008760A7 /* AppLaunchStatus.swift */; };
 		9894586828D7620000203DC3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894586728D7620000203DC3 /* APIManager.swift */; };
 		98AAE71C28DA9F6800CBDA46 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AAE71B28DA9F6800CBDA46 /* StarView.swift */; };
 		98AAE71E28DA9F8300CBDA46 /* StarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98AAE71D28DA9F8300CBDA46 /* StarView.xib */; };
@@ -70,6 +71,7 @@
 		9864694928DACC08004A4DF5 /* MoviePosterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterListTableViewCell.swift; sourceTree = "<group>"; };
 		9864694B28DACC31004A4DF5 /* ContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9864694C28DACC31004A4DF5 /* ContentsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentsCollectionViewCell.xib; sourceTree = "<group>"; };
+		988FD62428E13F85008760A7 /* AppLaunchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchStatus.swift; sourceTree = "<group>"; };
 		9894586728D7620000203DC3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		98AAE71B28DA9F6800CBDA46 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		98AAE71D28DA9F8300CBDA46 /* StarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarView.xib; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				981A5B6228E0819800C6BCBF /* IntroPageViewController.swift */,
 				981A5B6428E081AB00C6BCBF /* IntroFirstViewController.swift */,
 				981A5B6628E081BA00C6BCBF /* IntroSecondViewController.swift */,
+				988FD62428E13F85008760A7 /* AppLaunchStatus.swift */,
 			);
 			path = PageView;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				98BDD4EF28DEE51800658D3C /* WeatherMapViewController.swift in Sources */,
 				98BDD4F228DEE77400658D3C /* WeatherTableViewCell.swift in Sources */,
 				98B621CC28D4280A004FE826 /* MovieDetailsViewController.swift in Sources */,
+				988FD62528E13F85008760A7 /* AppLaunchStatus.swift in Sources */,
 				98E23C7E28D1F63D0007DFAE /* AppDelegate.swift in Sources */,
 				98BDD4F528DEFB2C00658D3C /* WeatherModel.swift in Sources */,
 				9864693628DAA5B3004A4DF5 /* ViewTestViewController.swift in Sources */,

@@ -11,25 +11,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        let firstRun = UserDefaults.standard.bool(forKey: "firstRun")
         
         guard let scene = (scene as? UIWindowScene) else { return }
             
             window = UIWindow(windowScene: scene)
             
-            if firstRun == false {
+        if AppLaunchStatus.checkFirstRun() {
                 let sb = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(withIdentifier: "IntroPageViewController") as! IntroPageViewController
 
                 window?.rootViewController = vc
             } else {
-                let sb = UIStoryboard(name: "TrendMovieList", bundle: nil)
+                let sb = UIStoryboard(name: "Main", bundle: nil)
                 let vc = sb.instantiateViewController(withIdentifier: "MoviePosterListViewController") as! MoviePosterListViewController
                 
-                window?.rootViewController = UINavigationController(rootViewController: vc)
+                window?.rootViewController = vc
             }
             window?.makeKeyAndVisible()
         }

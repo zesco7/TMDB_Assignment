@@ -15,12 +15,14 @@ class IntroPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         delegate = self
         dataSource = self
         
         createPageViewController()
         configurePageViewController()
         //checkFirstRun()
+        AppLaunchStatus.checkFirstRun()
     }
     
     /*

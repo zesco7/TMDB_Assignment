@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window?.rootViewController = vc
             } else {
                 let sb = UIStoryboard(name: "Main", bundle: nil)
-                let vc = sb.instantiateViewController(withIdentifier: "MoviePosterListViewController") as! MoviePosterListViewController
+                let vc = sb.instantiateViewController(withIdentifier: "TMDBViewController") as! TMDBViewController
                 
                 window?.rootViewController = vc
             }

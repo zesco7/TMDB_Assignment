@@ -26,14 +26,18 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     var movieID: Int? //화면전환시 TMDB 정보수신: 영화ID
     
+    var clipButtonActionHandler: (() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        clipButtonActionHandler!()
         requestTrailer(movieID: movieID!)
     
         navigationItemAttribute()
+      
 
     }
+
     
     //동영상화면 -> 영화정보목록화면 이동 기능 추가
     func navigationItemAttribute() {
@@ -54,6 +58,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         APIManager.shared.requestVideoKey(movieId: movieID) { movieKey in
             self.loadVideo(url: movieKey)
             print(movieID)
+            print(3333)
+            print(self.clipButtonActionHandler)
         }
     }
     
@@ -63,7 +69,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         return
     }
         let request = URLRequest(url: url)
-        webView.load(request)
+        DispatchQueue.main.async {
+            self.webView.load(request)
+        }
     }
 }
 
